@@ -1,0 +1,18 @@
+services:
+  metrics-app:
+    build: .
+    container_name: metrics-app
+    expose:
+      - "9200"
+    restart: unless-stopped
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx-proxy
+    depends_on:
+      - metrics-app
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    restart: always

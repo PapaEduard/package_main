@@ -37,14 +37,5 @@ pipeline {
             }
         }
     }
-
-    post {
-        success {
-            echo "Docker image built successfully: ${IMAGE_NAME}:${IMAGE_TAG}"
-        }
-        failure {
-            echo "Build failed!"
-        }
-    }
 }
 

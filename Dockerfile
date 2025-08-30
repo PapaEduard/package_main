@@ -3,9 +3,9 @@ FROM golang:1.20-alpine AS builder
 
 # Set the working directory inside the container
 WORKDIR /app
-
+RUN go mod init metrics
 # Download dependencies
-RUN go mod download
+RUN go mod tidy
 
 # Copy the rest of the source code
 COPY . .

@@ -41,7 +41,7 @@ pipeline {
                     docker pull "${REPO}:${PRJ_NAME}-${env.BUILD_NUMBER}"
                     docker stop "${PRJ_NAME}" || true
                     docker rm "${PJR_NAME}" || true
-                    docker run -d -it --name "${PRJ_NAME}" 
+                    docker run -d -it --name "${PRJ_NAME}" -p 9200:9200 "${REPO}:${PRJ_NAME}-${env.BUILD_NUMBER}"
                     """
                 }
             }

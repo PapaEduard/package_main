@@ -31,7 +31,6 @@ pipeline {
                     docker login -u edy2010 -p ${env.DOCKER_TOKEN}
                     docker push "${REPO}:${PRJ_NAME}-${env.BUILD_NUMBER}"
                     """
-                    }
                 }
             }
         }

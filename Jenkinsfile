@@ -34,6 +34,18 @@ pipeline {
                 }
             }
         }
+        stage('Deploy'){
+            steps{
+                script{
+                    sh"""
+                    docker pull "${REPO}:${PRJ_NAME}-${env.BUILD_NUMBER}"
+                    docker stop "${PRJ_NAME}" || true
+                    docker rm "${PJR_NAME}" || true
+                    docker run -d -it --name "${PRJ_NAME}" 
+                    """
+                }
+            }
+        }
     }
 }
 

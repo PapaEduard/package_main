@@ -4,9 +4,6 @@ FROM golang:1.20-alpine AS builder
 # Set the working directory inside the container
 WORKDIR /app
 
-# Copy go.mod and go.sum files to cache dependencies
-COPY go.mod go.sum ./
-
 # Download dependencies
 RUN go mod download
 
@@ -27,9 +24,6 @@ WORKDIR /root/
 
 # Copy the compiled binary from builder stage
 COPY --from=builder /app/metrics-app .
-
-# Expose the port the app listens on
-EXPOSE 9200
 
 # Command to run the executable
 ENTRYPOINT ["./metrics-app"]
